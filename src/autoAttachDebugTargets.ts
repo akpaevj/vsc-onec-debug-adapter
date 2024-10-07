@@ -1,6 +1,6 @@
 import * as vscode from "vscode"
 
-export class AutoAttachDebugTargetsViewProvider implements vscode.WebviewViewProvider {
+class AutoAttachDebugTargetsViewProvider implements vscode.WebviewViewProvider {
 
     private htmlUri: vscode.Uri
 
@@ -29,4 +29,15 @@ export class AutoAttachDebugTargetsViewProvider implements vscode.WebviewViewPro
 
         token.onCancellationRequested(() => {this.webView = undefined})
     }
+}
+
+let autoAttachDebugTargetsViewProvider : AutoAttachDebugTargetsViewProvider;
+
+export function init(context: vscode.ExtensionContext) {
+    autoAttachDebugTargetsViewProvider = new AutoAttachDebugTargetsViewProvider(context);
+    vscode.window.registerWebviewViewProvider("debug.autoAttachDebugTargets", autoAttachDebugTargetsViewProvider);
+}
+
+export function raiseUpdateTargetTypes() {
+    autoAttachDebugTargetsViewProvider.webView?.postMessage({ command: "raiseUpdate" });
 }

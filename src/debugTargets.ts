@@ -1,13 +1,13 @@
 import * as vscode from "vscode"
 
-export class DebugTargetItem {
+class DebugTargetItem {
     Id: string = "";
     User: string = "";
     Seance: string = "";
     Type: string = "";
 }
 
-export class DebugTargetsProvider implements vscode.TreeDataProvider<DebugTargetItem> {
+class DebugTargetsProvider implements vscode.TreeDataProvider<DebugTargetItem> {
 
     private items: DebugTargetItem[] = [];
     data: vscode.TreeItem[] = [];
@@ -44,4 +44,23 @@ export class DebugTargetsProvider implements vscode.TreeDataProvider<DebugTarget
     resolveTreeItem?(item: vscode.TreeItem, element: DebugTargetItem, token: vscode.CancellationToken): vscode.ProviderResult<vscode.TreeItem> {
         throw new Error("Method not implemented.");
     }
+}
+
+const debugTargetsProvider = new DebugTargetsProvider();
+
+function attachDebugTarget(id: String) {
+    vscode.debug.activeDebugSession?.customRequest("AttachDebugTargetRequest", { Id: id });
+}
+
+export function init() {
+    vscode.window.registerTreeDataProvider("debug.debugTargets", debugTargetsProvider);
+    vscode.commands.registerCommand("debug.debugTargets.connect", (item: DebugTargetItem) => {
+        attachDebugTarget(item.Id);
+    });
+}
+
+export function updateDebugTargets(session: vscode.DebugSession) {
+    session!.customRequest("DebugTargetsRequest").then(targets => {
+        debugTargetsProvider.updateItems(targets.Items);
+    });
 }
