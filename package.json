@@ -9,7 +9,7 @@
     "name": "Akpaev Evgeny",
     "email": "akpaevj@yandex.ru"
   },
-  "license": "MPL-2.0",
+  "license": "MIT",
   "private": true,
   "engines": {
     "vscode": "^1.76.0"
