@@ -1,0 +1,131 @@
+{
+  "name": "onec-debug",
+  "displayName": "1C:Enterprise",
+  "version": "0.1.0",
+  "publisher": "akpaevj",
+  "keywords": ["1C", "bsl"],
+  "description": "Debug adapter extension for 1C:Enterprise",
+  "author": {
+    "name": "Akpaev Evgeny",
+    "email": "akpaevj@yandex.ru"
+  },
+  "extensionDependencies": ["1c-syntax.language-1c-bsl"],
+  "license": "MPL-2.0",
+  "private": true,
+  "engines": {
+    "vscode": "^1.76.0"
+  },
+  "dependencies": {
+    "@vscode/debugadapter": "^1.67.0"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.76.0",
+    "@vscode/vsce": "3.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akpaevj/OneCDebugAdapter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/akpaevj/OneCDebugAdapter/issues"
+  },
+  "main": "./js/extension.js",
+  "activationEvents": [
+    "onDebug"
+  ],
+  "categories": ["Debuggers"],
+  "contributes": {
+    "breakpoints": [{ "language": "bsl" }],
+    "views": {
+      "debug": [
+        {
+          "id": "debug.debugTargets",
+          "name": "Debug targets",
+          "when": "debugState != inactive"
+        },
+        {
+          "id": "debug.autoAttachDebugTargets",
+          "name": "Auto attach debug targets",
+          "type": "webview"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "debug.debugTargets.connect",
+        "title": "Connect"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "debug.debugTargets.connect",
+          "when": "view == debug.debugTargets",
+          "group": "navigation"
+        }
+      ]
+    },
+    "debuggers": [
+      {
+        "type": "onec",
+        "label": "1C debug",
+        "program": "./bin/OnecDebugAdapter.exe",
+        "languages": ["bsl"],
+        "configurationAttributes": {
+          "attach": {
+            "required": [
+              "infoBase"
+            ],
+            "properties": {
+              "rootProject": {
+                "type": "string",
+                "description": "Каталог отлаживаемой конфигурации"
+              },
+              "subtype": {
+                "type": "string",
+                "enum": ["thin", "thick", "web"],
+                "description": "Тип запускаемого клиента"
+              },
+              "address": {
+                "type": "string",
+                "description": "Адрес опубликованной информационной базы"
+              },
+              "server": {
+                "type": "string",
+                "description": "Сервер отлаживаемой информационной базы"
+              },
+              "infoBase": {
+                "type": "string",
+                "description": "Имя отлаживаемой информационной базы"
+              },
+              "debugServerHost": {
+                "type": "string",
+                "description": "Адрес сервера отладки"
+              },
+              "debugServerPort": {
+                "type": "number",
+                "description": "Порт сервера отладки",
+                "default": 1550
+              },
+              "extensions": {
+                "type": "array",
+                "description": "Каталоги расширений конфигурации"
+              }
+            }
+          }
+        },
+        "initialConfigurations": [
+          {
+            "name": "Отладка 1С (присоединение)",
+            "type": "onec",
+            "request": "attach",
+            "rootProject": "${workspaceFolder}",
+            "infoBase": "infobase_name",
+            "debugServerHost": "localhost",
+            "debugServerPort": 1550
+          }
+        ]
+      }
+    ]
+  }
+}

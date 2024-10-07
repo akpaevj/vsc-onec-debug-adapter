@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"module": "commonjs",
+		"target": "es2020",
+		"paths": { "*": ["types/*"] },
+		"lib": ["es2020"],
+		"sourceMap": true,
+		"strict": true,
+		"outDir": "js",
+		"rootDir": "src"
+	},
+	"exclude": ["node_modules", ".vscode-test"]
+}
