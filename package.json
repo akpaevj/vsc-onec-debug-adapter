@@ -1,7 +1,7 @@
 {
   "name": "onec-debug",
   "displayName": "1C:Enterprise",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "akpaevj",
   "keywords": ["1C", "bsl"],
   "description": "Debug adapter extension for 1C:Enterprise",
@@ -71,6 +71,9 @@
         "program": "./bin/OnecDebugAdapter.exe",
         "languages": ["bsl"],
         "configurationAttributes": {
+          "launch": {
+            
+          },
           "attach": {
             "required": [
               "infoBase"
