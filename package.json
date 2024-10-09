@@ -90,7 +90,7 @@
     "debuggers": [
       {
         "type": "onec",
-        "label": "1C:Enterprise",
+        "label": "1C:Enterprise Debug",
         "program": "./bin/OnecDebugAdapter.exe",
         "languages": [
           "bsl"
