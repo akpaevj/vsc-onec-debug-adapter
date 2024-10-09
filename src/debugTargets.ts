@@ -52,11 +52,16 @@ function attachDebugTarget(id: String) {
     vscode.debug.activeDebugSession?.customRequest("AttachDebugTargetRequest", { Id: id });
 }
 
-export function init() {
-    vscode.window.registerTreeDataProvider("debug.debugTargets", debugTargetsProvider);
-    vscode.commands.registerCommand("debug.debugTargets.connect", (item: DebugTargetItem) => {
-        attachDebugTarget(item.Id);
-    });
+export function init(context: vscode.ExtensionContext) {
+    context.subscriptions.push(
+        vscode.window.registerTreeDataProvider("debug.debugTargets", debugTargetsProvider)
+    );
+
+    context.subscriptions.push(
+        vscode.commands.registerCommand("debug.debugTargets.connect", (item: DebugTargetItem) => {
+            attachDebugTarget(item.Id);
+        })
+    );
 }
 
 export function updateDebugTargets(session: vscode.DebugSession) {
