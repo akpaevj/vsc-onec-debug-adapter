@@ -27,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/akpaevj/onec-debug-adapter"
+    "url": "https://github.com/akpaevj/onec-debug-adapter.git"
   },
   "bugs": {
     "url": "https://github.com/akpaevj/onec-debug-adapter/issues"
