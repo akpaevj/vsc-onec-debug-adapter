@@ -1,5 +1,15 @@
 # 1С:Enterprise Debug Adapter Changelog
 
+## [0.1.5] - 10.10.2024
+
+#### Исправления:
+
+* Исправлена ошибка установки точек останова в модулях команд, модулях конфигурации и общих формах - 
+[#1](https://github.com/akpaevj/onec-debug-adapter/issues/1) 
+[#3](https://github.com/akpaevj/onec-debug-adapter/issues/3)  
+* Исправлена некорректная работа при шаге отладчика из серверного контекста в вызывающий клиентский - 
+[#2](https://github.com/akpaevj/onec-debug-adapter/issues/2) 
+
 ## [0.1.4] - 09.10.2024
 
 #### Исправления:
