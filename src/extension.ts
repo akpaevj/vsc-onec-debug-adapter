@@ -4,6 +4,7 @@ import * as ib from "./infobasesList"
 import * as dc from "./debugConfigurations"
 
 export function activate(context: vscode.ExtensionContext) {
+    vscode.debug.registerDebugConfigurationProvider("onec", new dc.OnecDebugConfigurationProvoider())
     initDapExtension(context);
     initViews(context);
 }

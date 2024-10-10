@@ -26,7 +26,7 @@ export class InfoBaseItem {
 export function readUserInfoBases(): Array<InfoBaseItem> {
     let infoBases = new Array<InfoBaseItem>();
 
-    let basePath = process.platform == "win32" ? process.env.appdata : process.env.user;
+    let basePath = process.platform == "win32" ? process.env.appdata : process.env.home;
     if (basePath == undefined)
         return infoBases;
 

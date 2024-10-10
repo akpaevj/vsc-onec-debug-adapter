@@ -1,4 +1,27 @@
+import path = require("path");
 import * as vscode from "vscode"
+
+const platformBasePath = process.platform == 'win32' ? "${env:PROGRAMFILES}/1cv8" : "/opt/1C/v8.3/x86_64";
+
+const launchConfig = {
+    "name": "Отладка 1С (запуск)",
+    "type": "onec",
+    "request": "launch",
+    "platformPath": platformBasePath,
+    "rootProject": "${workspaceFolder}",
+    "debugServerHost": "localhost",
+    "infoBase": "",
+    "autoAttachTypes": [
+        "ManagedClient",
+        "Server"
+    ]
+}
+
+export class OnecDebugConfigurationProvoider implements vscode.DebugConfigurationProvider {
+    provideDebugConfigurations(folder: vscode.WorkspaceFolder | undefined, token?: vscode.CancellationToken): vscode.ProviderResult<vscode.DebugConfiguration[]> {
+        return [launchConfig]
+    }
+}
 
 export function getOnecConfigurations() : Array<vscode.DebugConfiguration> {
     var config = vscode.workspace.getConfiguration("launch");

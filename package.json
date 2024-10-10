@@ -34,7 +34,8 @@
   },
   "main": "./js/extension.js",
   "activationEvents": [
-    "onDebug"
+    "onDebug",
+    "onLanguage:bsl"
   ],
   "categories": [
     "Debuggers"
@@ -90,7 +91,7 @@
     "debuggers": [
       {
         "type": "onec",
-        "label": "1C:Enterprise Debug",
+        "label": "1C:Enterprise",
         "program": "./bin/OnecDebugAdapter.exe",
         "languages": [
           "bsl"
@@ -98,7 +99,9 @@
         "configurationAttributes": {
           "launch": {
             "required": [
-              "platformPath"
+              "rootProject",
+              "platformPath",
+              "infoBase"
             ],
             "properties": {
               "rootProject": {
@@ -158,12 +161,22 @@
           },
           "attach": {
             "required": [
+              "rootProject",
+              "platformPath",
               "infoBase"
             ],
             "properties": {
               "rootProject": {
                 "type": "string",
                 "description": "Каталог отлаживаемой конфигурации"
+              },
+              "platformPath": {
+                "type": "string",
+                "description": "Каталог с версиями платформ 1С"
+              },
+              "platformVersion": {
+                "type": "string",
+                "description": "Версия используемой платформы"
               },
               "infoBase": {
                 "type": "string",
@@ -207,29 +220,7 @@
                 }
               }
             }
-          },
-          "initialConfigurations": [
-            {
-              "name": "Отладка 1С (запуск)",
-              "type": "onec",
-              "request": "launch",
-              "subType": "thin",
-              "platformPath": "",
-              "platformVersion": "latest",
-              "rootProject": "${workspaceFolder}",
-              "debugServerHost": "localhost",
-              "debugServerPort": 1550
-            },
-            {
-              "name": "Отладка 1С (присоединение)",
-              "type": "onec",
-              "request": "attach",
-              "rootProject": "${workspaceFolder}",
-              "infoBase": "infobase_name",
-              "debugServerHost": "localhost",
-              "debugServerPort": 1550
-            }
-          ]
+          }
         }
       }
     ]
