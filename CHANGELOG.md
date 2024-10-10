@@ -1,5 +1,12 @@
 # 1С:Enterprise Debug Adapter Changelog
 
+## [0.1.6] - 10.10.2024
+
+#### Исправления:
+
+* Исправлена некорректная работа отладчика в общих модулях, модулях http и web сервисов - 
+[#2](https://github.com/akpaevj/onec-debug-adapter/issues/2) 
+
 ## [0.1.5] - 10.10.2024
 
 #### Исправления:
