@@ -72,7 +72,7 @@ export function init(context: vscode.ExtensionContext) {
             vscode.window.showQuickPick(onecConfigurations.map(c => c.name), {
                 title: "Выберите конфигурацию отладки"
             }).then(value => {
-                if (value != undefined) {
+                if (value != undefined && configurations != undefined) {
                     configurations.filter(c => c.name == value).forEach(c => {
                         c.infoBase = item.name;
                     });

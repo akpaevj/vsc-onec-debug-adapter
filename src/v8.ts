@@ -26,11 +26,16 @@ export class InfoBaseItem {
 export function readUserInfoBases(): Array<InfoBaseItem> {
     let infoBases = new Array<InfoBaseItem>();
 
-    let basePath = process.platform == "win32" ? process.env.appdata : process.env.home;
+    let basePath = process.platform == "win32" ? process.env.appdata : process.env.HOME;
     if (basePath == undefined)
         return infoBases;
 
-    let ibases = path.join(basePath.toString(), (process.platform == "win32" ? "" : ".") + "1C\\1CEStart\\ibases.v8i")
+    let ibases = path.join(
+        basePath.toString(), 
+        (process.platform == "win32" ? "1C" : ".1C"),
+        "1cestart",
+        "ibases.v8i"
+    )
 
     if (fs.existsSync(ibases)) {
         let iBasesData = fs.readFileSync(ibases).toString();
