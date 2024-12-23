@@ -1,7 +1,7 @@
 {
   "name": "onec-debug",
   "displayName": "1C:Enterprise",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "publisher": "akpaevj",
   "keywords": [
     "1C",
@@ -92,7 +92,8 @@
       {
         "type": "onec",
         "label": "1C:Enterprise",
-        "program": "./bin/OnecDebugAdapter.exe",
+        "program": "./bin/OnecDebugAdapter.dll",
+        "runtime": "dotnet",
         "languages": [
           "bsl"
         ],
